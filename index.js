@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 `;
 
         inventario.forEach(producto => {
-            const clase = producto.stock < 20 ? "bajoStock" : "";
+            const claseMenor20 = producto.stock < 20 ? "bajoStock" : "";
             html += `
-              <tr class="${clase}">
+              <tr class="${claseMenor20}">
                 <td>${producto.nombre}</td>
                 <td>${producto.precio.toFixed(2)} €</td>
                 <td>${producto.stock}</td>
