@@ -1,19 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("texto.xml")
+    fetch("textoXML.xml")
         .then(response => response.text())
         .then(xmlTexto => {
             const parser = new DOMParser();
             const textoXML = parser.parseFromString(xmlTexto, "text/xml");
+
+            const inventario = pasarAXML(textoXML);
+            mostrarTabla(inventario);
         })
+
     function pasarAXML(xml){
         const productos = [];
         const nodo = xml.getElementsByTagName("producto");
 
         for (let producto of nodo) {
-            const nombre = producto.querySelector(".nombre").textContent;
-            const precio = parseFloat(producto.querySelector(".precio").textContent);
-            const stock = parseFloat(producto.querySelector(".stock").textContent);
-            productos.push(producto, precio, stock);
+            const nombre = producto.querySelector("nombre").textContent;
+            const precio = parseFloat(producto.querySelector("precio").textContent);
+            const stock = parseFloat(producto.querySelector("stock").textContent);
+            productos.push({nombre, precio, stock});
         }
         return productos;
     }
@@ -41,4 +45,4 @@ document.addEventListener("DOMContentLoaded", () => {
         html += `</tbody></table>`;
         document.getElementById("tabla-contenedor").innerHTML = html;
     }
-}
+});
