@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let producto of nodo) {
             const nombre = producto.querySelector("nombre").textContent;
             const precio = parseFloat(producto.querySelector("precio").textContent);
-            const stock = parseFloat(producto.querySelector("stock").textContent);
+            const stock = parseInt(producto.querySelector("stock").textContent);
             productos.push({nombre, precio, stock});
         }
         return productos;
